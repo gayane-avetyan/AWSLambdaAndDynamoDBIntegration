@@ -31,7 +31,7 @@
     "dependencies": [],
     "tags": {},
     "resources": {
-      "/event": {
+      "/events": {
         "POST": {
           "enable_cors": true,
           "authorization_type": "NONE",
