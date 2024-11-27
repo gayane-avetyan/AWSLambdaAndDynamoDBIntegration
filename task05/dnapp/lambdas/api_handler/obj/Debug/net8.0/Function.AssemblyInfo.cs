@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleLambdaFunction")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7be63113e02d143e386f285d7e6c4710b7fb890")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da3bb1b48c07d808f5ce082692c7e8c22587ca2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleLambdaFunction")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleLambdaFunction")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

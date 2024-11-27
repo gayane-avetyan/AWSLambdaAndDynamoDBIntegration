@@ -18,7 +18,7 @@ public class Function
     public Function()
     {
         var dynamoClient = new AmazonDynamoDBClient();
-        _dynamoTable = Table.LoadTable(dynamoClient, Environment.GetEnvironmentVariable("target_table"));
+        _dynamoTable = Table.LoadTable(dynamoClient, "Events");
     }
 
     public APIGatewayHttpApiV2ProxyResponse FunctionHandler(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
@@ -51,7 +51,7 @@ public class Function
 
         return new APIGatewayHttpApiV2ProxyResponse
         {
-            StatusCode = (int)HttpStatusCode.Created,
+            StatusCode = 201,
             Body = JsonConvert.SerializeObject(new { statusCode = 201, @event = response }),
             Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
         };
