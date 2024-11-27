@@ -6,6 +6,7 @@ using Amazon.DynamoDBv2;
 using System;
 using Newtonsoft.Json;
 using System.Net;
+using System.Threading.Tasks;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -13,47 +14,66 @@ namespace SimpleLambdaFunction;
 
 public class Function
 {
-    private readonly Table _dynamoTable;
-
-    public Function()
+    private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
+    private static string tableName = Environment.GetEnvironmentVariable("target_table");
+    
+    public async Task<LambdaResponse> FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
-        var dynamoClient = new AmazonDynamoDBClient();
-        _dynamoTable = Table.LoadTable(dynamoClient, "Events");
+        LambdaResponse response = new LambdaResponse();
+        try
+        {
+            string eventId = Guid.NewGuid().ToString();
+            string createdAt = DateTime.UtcNow.ToString("o");
+
+            var document = new Document
+            {
+                ["id"] = eventId,
+                ["principalId"] = request.PrincipalId,
+                ["createdAt"] = createdAt,
+                ["body"] = Document.FromJson(JsonConvert.SerializeObject(request.Content))
+            };
+
+            Table table = Table.LoadTable(client, tableName);
+            await table.PutItemAsync(document);
+
+            Event savedEvent = new Event
+            {
+                Id = eventId,
+                PrincipalId = request.PrincipalId,
+                CreatedAt = createdAt,
+                Content = request.Content
+            };
+
+            response.StatusCode = 201;
+            response.Event = savedEvent;
+        }
+        catch (Exception ex)
+        {
+            context.Logger.LogLine($"Error: {ex.Message}");
+            response.StatusCode = 500;
+            response.Event = null;
+        }
+
+        return response;
     }
+}
 
-    public APIGatewayHttpApiV2ProxyResponse FunctionHandler(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
-    {
-        // Parse the incoming request
-        var requestBody = JsonConvert.DeserializeObject<Dictionary<string, object>>(request.Body);
-        var principalId = Convert.ToInt32(requestBody["principalId"]);
-        var content = JsonConvert.DeserializeObject<Dictionary<string, string>>(requestBody["content"].ToString());
+public class LambdaRequest
+{
+    public int PrincipalId { get; set; }
+    public Dictionary<string, string> Content { get; set; }
+}
 
-        // Create a new event item
-        var newEvent = new Document
-        {
-            ["id"] = Guid.NewGuid().ToString(),
-            ["principalId"] = principalId,
-            ["createdAt"] = DateTime.UtcNow.ToString("o"),
-            ["body"] = JsonConvert.SerializeObject(content)
-        };
+public class LambdaResponse
+{
+    public int StatusCode { get; set; }
+    public Event Event { get; set; }
+}
 
-        // Save the event to DynamoDB
-        _dynamoTable.PutItemAsync(newEvent).Wait();
-
-        // Prepare the response object
-        var response = new
-        {
-            id = newEvent["id"],
-            principalId = newEvent["principalId"],
-            createdAt = newEvent["createdAt"],
-            body = content
-        };
-
-        return new APIGatewayHttpApiV2ProxyResponse
-        {
-            StatusCode = 201,
-            Body = JsonConvert.SerializeObject(new { statusCode = 201, @event = response }),
-            Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-        };
-    }
+public class Event
+{
+    public string Id { get; set; }
+    public int PrincipalId { get; set; }
+    public string CreatedAt { get; set; }
+    public Dictionary<string, string> Content { get; set; }
 }
