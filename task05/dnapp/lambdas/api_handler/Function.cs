@@ -14,17 +14,14 @@ namespace SimpleLambdaFunction;
 
 public class Function
 {
-
-    
     public async Task<LambdaResponse> FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
-        var credetials = new BasicAWSCredentials("ASIA5FTZDTP2KXXX3NP3", "MM0hW1UVaydk32n0LvTBlQT3IHWOA8TTo99ohnRh");
         var config = new AmazonDynamoDBConfig()
         {
             RegionEndpoint = Amazon.RegionEndpoint.EUCentral1
         };
 
-        var client = new AmazonDynamoDBClient(credetials, config);
+        var client = new AmazonDynamoDBClient(config);
         var tableName = Environment.GetEnvironmentVariable("target_table");
 
         var response = new LambdaResponse();
