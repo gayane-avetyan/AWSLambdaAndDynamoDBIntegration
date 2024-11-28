@@ -32,7 +32,7 @@ public class Function
         {
             ["id"] = eventId,
             ["principalId"] = request.PrincipalId,
-            ["createdAt"] = createdAt,
+            ["createdAt"] = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
             ["body"] = Document.FromJson(JsonConvert.SerializeObject(request.Content))
         };
 
