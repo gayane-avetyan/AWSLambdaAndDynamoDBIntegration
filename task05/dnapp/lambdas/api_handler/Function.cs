@@ -41,14 +41,14 @@ public class Function
 
         Event savedEvent = new Event
         {
-            Id = eventId,
-            PrincipalId = request.PrincipalId,
-            CreatedAt = createdAt,
-            Body = request.Content
+            id = eventId,
+            principalId = request.PrincipalId,
+            createdAt = createdAt,
+            body = request.Content
         };
 
-        response.StatusCode = 201;
-        response.EventData = savedEvent;
+        response.statusCode = 201;
+        response.@event = savedEvent;
 
         return response;
     }
@@ -66,23 +66,23 @@ public class LambdaRequest
     public class LambdaResponse
     {
         [JsonProperty("statusCode")]
-        public int StatusCode { get; set; } // JSON attribute maps to "statusCode"
+        public int statusCode { get; set; } // JSON attribute maps to "statusCode"
 
         [JsonProperty("event")]
-        public Event EventData { get; set; } // JSON attribute maps to "event"
+        public Event @event { get; set; } // JSON attribute maps to "event"
     }
 
     public class Event
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("principalId")]
-        public int PrincipalId { get; set; }
+        public int principalId { get; set; }
 
         [JsonProperty("createdAt")]
-        public string CreatedAt { get; set; }
+        public string createdAt { get; set; }
 
         [JsonProperty("body")]
-        public Dictionary<string, string> Body { get; set; }
+        public Dictionary<string, string> body { get; set; }
     }
