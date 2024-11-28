@@ -19,39 +19,30 @@ public class Function
     public async Task<LambdaResponse> FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
         LambdaResponse response = new LambdaResponse();
-        try
+        string eventId = Guid.NewGuid().ToString();
+        string createdAt = DateTime.UtcNow.ToString("o");
+
+        var document = new Document
         {
-            string eventId = Guid.NewGuid().ToString();
-            string createdAt = DateTime.UtcNow.ToString("o");
+            ["id"] = eventId,
+            ["principalId"] = request.PrincipalId,
+            ["createdAt"] = createdAt,
+            ["body"] = Document.FromJson(JsonConvert.SerializeObject(request.Content))
+        };
 
-            var document = new Document
-            {
-                ["id"] = eventId,
-                ["principalId"] = request.PrincipalId,
-                ["createdAt"] = createdAt,
-                ["body"] = Document.FromJson(JsonConvert.SerializeObject(request.Content))
-            };
+        Table table = Table.LoadTable(client, tableName);
+        await table.PutItemAsync(document);
 
-            Table table = Table.LoadTable(client, tableName);
-            await table.PutItemAsync(document);
-
-            Event savedEvent = new Event
-            {
-                Id = eventId,
-                PrincipalId = request.PrincipalId,
-                CreatedAt = createdAt,
-                Content = request.Content
-            };
-
-            response.StatusCode = 201;
-            response.Event = savedEvent;
-        }
-        catch (Exception ex)
+        Event savedEvent = new Event
         {
-            context.Logger.LogLine($"Error: {ex.Message}");
-            response.StatusCode = 500;
-            response.Event = null;
-        }
+            Id = eventId,
+            PrincipalId = request.PrincipalId,
+            CreatedAt = createdAt,
+            Content = request.Content
+        };
+
+        response.StatusCode = 201;
+        response.Event = savedEvent;
 
         return response;
     }
