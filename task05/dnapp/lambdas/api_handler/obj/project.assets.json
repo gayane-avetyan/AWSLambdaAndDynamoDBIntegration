@@ -44,7 +44,7 @@
           }
         }
       },
-      "AWSSDK.Core/3.7.400.57": {
+      "AWSSDK.Core/3.7.400.58": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -57,10 +57,10 @@
           }
         }
       },
-      "AWSSDK.DynamoDBv2/3.7.403.7": {
+      "AWSSDK.DynamoDBv2/3.7.403.8": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.400.57, 4.0.0)"
+          "AWSSDK.Core": "[3.7.400.58, 4.0.0)"
         },
         "compile": {
           "lib/net8.0/AWSSDK.DynamoDBv2.dll": {
@@ -141,15 +141,15 @@
         "lib/netcoreapp3.1/Amazon.Lambda.Serialization.SystemTextJson.xml"
       ]
     },
-    "AWSSDK.Core/3.7.400.57": {
-      "sha512": "iuzim/LgPu+VRJZ8mQluYiEq/cZcxndh+QPHOeH7VTotc6mXOuLt6fXTzBSa5EBw7YgxIEQV5zpWedbYhPQzJg==",
+    "AWSSDK.Core/3.7.400.58": {
+      "sha512": "tsNRJMOxCpd6FXZq/3y3ei3MMEWmHO6uFgIg8GAkZS74hxtfDB6zyycAqd9vbo9UJBbX7lmtYfDPQ0sg2CUDRw==",
       "type": "package",
-      "path": "awssdk.core/3.7.400.57",
+      "path": "awssdk.core/3.7.400.58",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.400.57.nupkg.sha512",
+        "awssdk.core.3.7.400.58.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.Core.dll",
@@ -170,17 +170,17 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.DynamoDBv2/3.7.403.7": {
-      "sha512": "Y9I4BmJCaG1rkZkK2LvkBxMhDnyESmBGREqrIV2nVFvqkZUzynLLGr9fURQcKB9XLQSH8jHTR4WMLQux0A6FYg==",
+    "AWSSDK.DynamoDBv2/3.7.403.8": {
+      "sha512": "0EUcLaLM4+YTRuZSjxqvxwGJvtXUMnot9L1lL8EBiKljYsTdAOHMtoNBWXCmhqhFSUpP7eG8jsoBMV8PVCl5KA==",
       "type": "package",
-      "path": "awssdk.dynamodbv2/3.7.403.7",
+      "path": "awssdk.dynamodbv2/3.7.403.8",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.DynamoDBv2.CodeAnalysis.dll",
         "analyzers/dotnet/cs/SharedAnalysisCode.dll",
-        "awssdk.dynamodbv2.3.7.403.7.nupkg.sha512",
+        "awssdk.dynamodbv2.3.7.403.8.nupkg.sha512",
         "awssdk.dynamodbv2.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.DynamoDBv2.dll",
@@ -235,7 +235,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "AWSSDK.DynamoDBv2 >= 3.7.403.7",
+      "AWSSDK.DynamoDBv2 >= 3.7.403.8",
       "Amazon.Lambda.APIGatewayEvents >= 2.7.1",
       "Amazon.Lambda.Core >= 2.5.0",
       "Amazon.Lambda.Serialization.SystemTextJson >= 2.2.0",
@@ -295,7 +295,7 @@
         "dependencies": {
           "AWSSDK.DynamoDBv2": {
             "target": "Package",
-            "version": "[3.7.403.7, )"
+            "version": "[3.7.403.8, )"
           },
           "Amazon.Lambda.APIGatewayEvents": {
             "target": "Package",

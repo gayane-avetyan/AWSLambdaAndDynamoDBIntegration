@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.APIGatewayEvents;
-using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2;
 using System;
-using Newtonsoft.Json;
-using System.Net;
 using System.Threading.Tasks;
+using Amazon.DynamoDBv2.DocumentModel;
+using Newtonsoft.Json;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -14,7 +13,7 @@ namespace SimpleLambdaFunction;
 
 public class Function
 {
-    private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
+   private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
     private static string tableName = Environment.GetEnvironmentVariable("target_table");
     
     public async Task<LambdaResponse> FunctionHandler(LambdaRequest request, ILambdaContext context)

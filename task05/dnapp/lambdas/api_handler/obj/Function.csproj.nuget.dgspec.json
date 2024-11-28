@@ -53,7 +53,7 @@
           "dependencies": {
             "AWSSDK.DynamoDBv2": {
               "target": "Package",
-              "version": "[3.7.403.7, )"
+              "version": "[3.7.403.8, )"
             },
             "Amazon.Lambda.APIGatewayEvents": {
               "target": "Package",

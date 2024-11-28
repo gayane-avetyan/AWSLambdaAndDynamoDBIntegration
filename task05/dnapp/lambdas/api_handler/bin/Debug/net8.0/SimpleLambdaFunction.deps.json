@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "SimpleLambdaFunction/1.0.0": {
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "3.7.403.7",
+          "AWSSDK.DynamoDBv2": "3.7.403.8",
           "Amazon.Lambda.APIGatewayEvents": "2.7.1",
           "Amazon.Lambda.Core": "2.5.0",
           "Amazon.Lambda.Serialization.SystemTextJson": "2.2.0",
@@ -45,22 +45,22 @@
           }
         }
       },
-      "AWSSDK.Core/3.7.400.57": {
+      "AWSSDK.Core/3.7.400.58": {
         "runtime": {
           "lib/net8.0/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.400.57"
+            "fileVersion": "3.7.400.58"
           }
         }
       },
-      "AWSSDK.DynamoDBv2/3.7.403.7": {
+      "AWSSDK.DynamoDBv2/3.7.403.8": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.400.57"
+          "AWSSDK.Core": "3.7.400.58"
         },
         "runtime": {
           "lib/net8.0/AWSSDK.DynamoDBv2.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.403.7"
+            "fileVersion": "3.7.403.8"
           }
         }
       },
@@ -101,19 +101,19 @@
       "path": "amazon.lambda.serialization.systemtextjson/2.2.0",
       "hashPath": "amazon.lambda.serialization.systemtextjson.2.2.0.nupkg.sha512"
     },
-    "AWSSDK.Core/3.7.400.57": {
+    "AWSSDK.Core/3.7.400.58": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iuzim/LgPu+VRJZ8mQluYiEq/cZcxndh+QPHOeH7VTotc6mXOuLt6fXTzBSa5EBw7YgxIEQV5zpWedbYhPQzJg==",
-      "path": "awssdk.core/3.7.400.57",
-      "hashPath": "awssdk.core.3.7.400.57.nupkg.sha512"
+      "sha512": "sha512-tsNRJMOxCpd6FXZq/3y3ei3MMEWmHO6uFgIg8GAkZS74hxtfDB6zyycAqd9vbo9UJBbX7lmtYfDPQ0sg2CUDRw==",
+      "path": "awssdk.core/3.7.400.58",
+      "hashPath": "awssdk.core.3.7.400.58.nupkg.sha512"
     },
-    "AWSSDK.DynamoDBv2/3.7.403.7": {
+    "AWSSDK.DynamoDBv2/3.7.403.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Y9I4BmJCaG1rkZkK2LvkBxMhDnyESmBGREqrIV2nVFvqkZUzynLLGr9fURQcKB9XLQSH8jHTR4WMLQux0A6FYg==",
-      "path": "awssdk.dynamodbv2/3.7.403.7",
-      "hashPath": "awssdk.dynamodbv2.3.7.403.7.nupkg.sha512"
+      "sha512": "sha512-0EUcLaLM4+YTRuZSjxqvxwGJvtXUMnot9L1lL8EBiKljYsTdAOHMtoNBWXCmhqhFSUpP7eG8jsoBMV8PVCl5KA==",
+      "path": "awssdk.dynamodbv2/3.7.403.8",
+      "hashPath": "awssdk.dynamodbv2.3.7.403.8.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

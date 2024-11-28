@@ -29,7 +29,6 @@
     "resource_type": "api_gateway",
     "deploy_stage": "api",
     "dependencies": [],
-    "tags": {},
     "resources": {
       "/events": {
         "POST": {
@@ -45,7 +44,8 @@
           "default_error_pattern": true
         }
       }
-    }
+    },
+    "tags": {}
   },
   "Events": {
     "resource_type": "dynamodb_table",
