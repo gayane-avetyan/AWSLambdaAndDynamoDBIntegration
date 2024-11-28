@@ -26,13 +26,13 @@ public class Function
 
         var response = new LambdaResponse();
         string eventId = Guid.NewGuid().ToString();
-        string createdAt = DateTime.UtcNow.ToString("o");
+        string createdAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 
         var document = new Document
         {
             ["id"] = eventId,
             ["principalId"] = request.PrincipalId,
-            ["createdAt"] = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
+            ["createdAt"] = createdAt,
             ["body"] = Document.FromJson(JsonConvert.SerializeObject(request.Content))
         };
 
@@ -66,10 +66,10 @@ public class LambdaRequest
     public class LambdaResponse
     {
         [JsonProperty("statusCode")]
-        public int statusCode { get; set; } // JSON attribute maps to "statusCode"
+        public int statusCode { get; set; }
 
         [JsonProperty("event")]
-        public Event @event { get; set; } // JSON attribute maps to "event"
+        public Event @event { get; set; }
     }
 
     public class Event
