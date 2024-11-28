@@ -26,7 +26,7 @@ public class Function
 
         var response = new LambdaResponse();
         string eventId = Guid.NewGuid().ToString();
-        string createdAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        string createdAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fff") + "Z";
 
         var document = new Document
         {
