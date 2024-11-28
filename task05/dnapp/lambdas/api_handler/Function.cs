@@ -44,32 +44,45 @@ public class Function
             Id = eventId,
             PrincipalId = request.PrincipalId,
             CreatedAt = createdAt,
-            Content = request.Content
+            Body = request.Content
         };
 
         response.StatusCode = 201;
-        response.Event = savedEvent;
+        response.EventData = savedEvent;
 
         return response;
     }
 }
 
 public class LambdaRequest
-{
-    public int PrincipalId { get; set; }
-    public Dictionary<string, string> Content { get; set; }
-}
+    {
+        [JsonProperty("principalId")]
+        public int PrincipalId { get; set; }
 
-public class LambdaResponse
-{
-    public int StatusCode { get; set; }
-    public Event Event { get; set; }
-}
+        [JsonProperty("content")]
+        public Dictionary<string, string> Content { get; set; }
+    }
 
-public class Event
-{
-    public string Id { get; set; }
-    public int PrincipalId { get; set; }
-    public string CreatedAt { get; set; }
-    public Dictionary<string, string> Content { get; set; }
-}
+    public class LambdaResponse
+    {
+        [JsonProperty("statusCode")]
+        public int StatusCode { get; set; } // JSON attribute maps to "statusCode"
+
+        [JsonProperty("event")]
+        public Event EventData { get; set; } // JSON attribute maps to "event"
+    }
+
+    public class Event
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("principalId")]
+        public int PrincipalId { get; set; }
+
+        [JsonProperty("createdAt")]
+        public string CreatedAt { get; set; }
+
+        [JsonProperty("body")]
+        public Dictionary<string, string> Body { get; set; }
+    }
