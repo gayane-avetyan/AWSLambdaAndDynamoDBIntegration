@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DocumentModel;
 using Newtonsoft.Json;
+using Amazon.Runtime;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -13,12 +14,20 @@ namespace SimpleLambdaFunction;
 
 public class Function
 {
-    private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-    private static string tableName = Environment.GetEnvironmentVariable("target_table");
+
     
     public async Task<LambdaResponse> FunctionHandler(LambdaRequest request, ILambdaContext context)
     {
-        LambdaResponse response = new LambdaResponse();
+        var credetials = new BasicAWSCredentials("ASIA5FTZDTP2KXXX3NP3", "MM0hW1UVaydk32n0LvTBlQT3IHWOA8TTo99ohnRh");
+        var config = new AmazonDynamoDBConfig()
+        {
+            RegionEndpoint = Amazon.RegionEndpoint.EUCentral1
+        };
+
+        var client = new AmazonDynamoDBClient(credetials, config);
+        var tableName = Environment.GetEnvironmentVariable("target_table");
+
+        var response = new LambdaResponse();
         string eventId = Guid.NewGuid().ToString();
         string createdAt = DateTime.UtcNow.ToString("o");
 
